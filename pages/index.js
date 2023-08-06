@@ -27,7 +27,7 @@ export default function Home() {
         {/* Photo Reference */}
         <PhotoRef />
         {/* Welcome */}
-        <Welcome id="welcome" />
+        <Welcome  />
         {/* Services */}
         <Services />
         {/* Portfolio */}
