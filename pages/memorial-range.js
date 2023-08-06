@@ -3,74 +3,54 @@ import Image from "next/image";
 import Link from "next/link";
 
 import dynamic from "next/dynamic";
-import { MemorialCategories } from "@/products/Categories";
 
 import Contact from "@/components/home/Contact";
 import Footer from "@/components/footer/Footer";
+
+import ProductCategories from "@/products/ProductCategories";
 
 const MapWithNoSSR = dynamic(() => import("../components/Map"), {
   ssr: false,
 });
 
-export default function MemorialRangePage() {
-
-  // Function to calculate the count of products in each category
-  const getCategoryCounts = () => {
-    const categoryCounts = {};
-
-    MemorialCategories.forEach((product) => {
-      if (categoryCounts[product.category]) {
-        categoryCounts[product.category] += 1;
-      } else {
-        categoryCounts[product.category] = 1;
-      }
-    });
-
-    return categoryCounts;
-  };
-
-  const categoryCounts = getCategoryCounts();
-  
+export default function MemorialRangePage({ categories }) {
   return (
-   <>
-     <div className="lg:w-[90%] lg:mx-auto mb-20 min-h-screen ">
-      <div className="mb-20">
-        <h1 className="mt-20 text-4xl text-center lg:text-5xl text-zinc-600">
-          Memorial Range
-        </h1>
-        <Image
-          src="/floral-underflow-slate.png"
-          alt="About Us"
-          width={400}
-          height={500}
-          className="w-[350px] h-[50px] mx-auto text-center"
-        />
-      </div>
-      <ul className="grid w-full grid-cols-1 md:grid-cols-3">
-        {MemorialCategories.map((product) => (
-          <li
-            key={product.category}
-            className="flex flex-col items-center justify-center p-4 "
-          >
-            <Image
-              src={product.image}
-              alt={product.title}
-              width={300}
-              height={300}
-              className="border w-[300] h-[200] object-contain"
-            />
-            <div className="w-2/3 py-2 text-xl font-bold text-center bg-gray-800">
-              <Link href={`/memorial-range/${product.category}`} legacyBehaviour className="font-bold">
-                <span className="w-full py-2 font-bold text-white">{product.title}</span>
-                
+    <>
+      <div className="lg:w-[90%] lg:mx-auto mb-20 min-h-screen ">
+        <div className="mb-20">
+          <h1 className="mt-20 text-4xl text-center lg:text-5xl text-zinc-600">
+            Memorial Range
+          </h1>
+          <Image
+            src="/floral-underflow-slate.png"
+            alt="About Us"
+            width={400}
+            height={500}
+            className="w-[350px] h-[50px] mx-auto text-center"
+          />
+        </div>
+        <ul className="grid w-full grid-cols-1 gap-2 md:grid-cols-3">
+          {categories.map((category) => (
+            <li key={Math.random()} className="relative w-full h-[400px] mb-10">
+              <Link href={category.href}>
+                <Image
+                  src={category.coverImage}
+                  alt={category.name}
+                  width={300}
+                  height={100}
+                  className="flex items-center justify-center w-[300px] h-[400px] mx-auto text-center]"
+                />
+                <div className="absolute inset-0 flex items-center justify-center w-full h-full bg-opacity-50 bg-slate-700">
+                  <h2 className="text-3xl font-semibold text-center text-white">
+                    {category.name}
+                  </h2>
+                </div>
               </Link>
-              <span className="ml-5 text-white">{categoryCounts[product.category]}</span>
-            </div>
-          </li>
-        ))}
-      </ul>
-    </div>
-    <section className="relative z-10 h-[1600px] lg:h-[1100px] bg-slate-800">
+            </li>
+          ))}
+        </ul>
+      </div>
+      <section className="relative z-10 h-[1600px] lg:h-[1100px] bg-slate-800">
         <div className=" flex flex-col w-full px-10 py-12 mt-10 lg:w-[80%] lg:m-auto">
           <h1 className="mb-5 text-4xl text-center text-slate-400 lg:text-5xl lg:mb-20 lg:mt-20">
             Contact
@@ -100,7 +80,17 @@ export default function MemorialRangePage() {
           </div>
         </div>
       </section>
-    <Footer />  
-   </>
+      <Footer />
+    </>
   );
+}
+
+export async function getStaticProps() {
+  const categories = ProductCategories;
+
+  return {
+    props: {
+      categories,
+    },
+  };
 }
