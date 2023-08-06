@@ -1,0 +1,39 @@
+[
+  {
+    "name": "Churchyard Memorials",
+    "slug": "cemetery-memorials",
+    "href": "/cemetery-memorials",
+    "coverImage": "/cemetery-memorials/memorial.png"
+  },
+  {
+    "name": "Heart Memorials",
+    "slug": "churchyard-memorials",
+    "href": "/churchyard-memorials",
+    "coverImage": "/heart-memorials/heart.png"
+  },
+  {
+    "name": "Childrens Memorials",
+    "slug": "childrens-memorials",
+    "href": "/child-memorials",
+    "coverImage": "/child-memorials/childrens.png"
+  },
+  {
+    "name": "Cremation Memorials",
+    "slug": "cremation-memorials",
+    "href": "/cremation-memorials",
+    "coverImage": "/cremation-memorials/cremation.png"
+  },
+  {
+    "name": "Vases",
+    "slug": "vases",
+    "href": "/vase-memorials",
+    "coverImage": "/vase-memorials/vase.png"
+  },
+
+  {
+    "name": "Kerbset Memorials",
+    "slug": "memorial-range",
+    "href": "/kerbset-memorials",
+    "coverImage": "/kerbset-memorials/kerbset.png"
+  }
+]
